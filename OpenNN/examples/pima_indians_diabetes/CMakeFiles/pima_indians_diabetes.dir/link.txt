@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/pima_indians_diabetes.dir/main.cpp.o  -o pima_indians_diabetes -rdynamic ../../opennn/libopennn.a ../../tinyxml2/libtinyxml2.a 

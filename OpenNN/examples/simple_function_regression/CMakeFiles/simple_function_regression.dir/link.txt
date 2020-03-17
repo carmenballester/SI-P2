@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/simple_function_regression.dir/main.cpp.o  -o simple_function_regression -rdynamic ../../opennn/libopennn.a ../../tinyxml2/libtinyxml2.a 

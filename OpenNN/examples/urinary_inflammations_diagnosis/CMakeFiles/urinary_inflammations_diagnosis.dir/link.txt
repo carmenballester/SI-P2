@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/urinary_inflammations_diagnosis.dir/main.cpp.o  -o urinary_inflammations_diagnosis -rdynamic ../../opennn/libopennn.a ../../tinyxml2/libtinyxml2.a 

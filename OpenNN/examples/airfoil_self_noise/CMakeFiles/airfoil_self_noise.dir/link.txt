@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/airfoil_self_noise.dir/main.cpp.o  -o airfoil_self_noise -rdynamic ../../opennn/libopennn.a ../../tinyxml2/libtinyxml2.a 

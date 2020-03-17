@@ -1,0 +1,49 @@
+<NeuralNetwork>
+    <Inputs>
+        <InputsNumber>2</InputsNumber>
+        <Item Index="1">
+            <Name>x1</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+        <Item Index="2">
+            <Name>x2</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+    </Inputs>
+    <ScalingLayer>
+        <ScalingNeuronsNumber>2</ScalingNeuronsNumber>
+        <Statistics Index="1">
+            <Minimum>0.186207</Minimum>
+            <Maximum>0.868056</Maximum>
+            <Mean>0.497146</Mean>
+            <StandardDeviation>0.190358</StandardDeviation>
+        </Statistics>
+        <Statistics Index="2">
+            <Minimum>0.149351</Minimum>
+            <Maximum>0.875</Maximum>
+            <Mean>0.488018</Mean>
+            <StandardDeviation>0.198204</StandardDeviation>
+        </Statistics>
+        <ScalingMethod>MinimumMaximum</ScalingMethod>
+    </ScalingLayer>
+    <MultilayerPerceptron>
+        <Architecture>2 40 1</Architecture>
+        <LayersActivationFunction>HyperbolicTangent Logistic</LayersActivationFunction>
+        <Parameters>-16.2225 5.55652 10.2579 -1.82351 -10.8562 16.4451 0.971505 -3.9849 -3.55129 1.00792 0.794461 -1.16685 -4.31435 -11.4827 21.519 6.1143 11.5748 -25.3375 0.0659716 3.09787 -2.16919 1.13332 -0.870187 0.357468 -13.3983 5.92363 -9.42815 -2.22831 7.54131 -4.58453 -0.706396 -15.3107 30.2562 -2.7414 -1.25704 6.93525 11.5884 17.0609 12.9327 2.78899 -5.68369 -6.80461 3.75826 0.749733 -6.45792 0.224904 -2.24408 0.110896 3.22681 2.47022 1.03484 10.752 -11.7784 -0.125297 -2.9288 -0.755707 2.51489 -2.47829 -0.500145 0.170878 -5.94075 -6.0329 -0.993395 -4.82393 17.9515 12.3486 0.414206 2.53906 -1.16732 1.38363 0.338052 -0.665895 4.51659 -2.4744 -3.07207 -24.0164 13.2222 4.55412 6.35293 9.70411 -22.7199 15.5388 -1.08176 -27.5613 -3.39189 0.663776 1.56387 28.4201 -16.9888 21.5693 7.40171 -11.5419 -1.41846 4.15064 7.7042 -2.36538 -3.73472 4.62335 -16.7171 -17.4658 20.0273 -33.2694 -3.31636 -4.0962 10.4039 -1.16727 -0.517249 3.08105 -23.9057 3.91288 19.5343 -4.01566 -1.99526 3.97368 6.64578 -6.16275 -1.46866 -4.25566 -8.14416 -6.66974 -3.02026 -18.1413 0.0619292 6.79682 -4.54712 3.69513 -6.01669 -4.60273 -2.50639 -6.07868 -10.8869 21.9776 1.25646 -0.901979 6.92412 4.67096 1.29813 3.27841 -11.6354 5.9858 -3.71707 2.17403 -7.59512 7.30645 -2.08117 2.53666 0.484093 4.47286 9.76505 2.17947 27.7138 10.3064 -2.51147 -18.5847 -10.8138 11.6398 5.28926 21.8081 4.56212 -20.4468 0.493031</Parameters>
+    </MultilayerPerceptron>
+    <ProbabilisticLayer>
+        <ProbabilisticNeuronsNumber>1</ProbabilisticNeuronsNumber>
+        <ProbabilisticMethod>Probability</ProbabilisticMethod>
+        <DecisionThreshold>0.5</DecisionThreshold>
+    </ProbabilisticLayer>
+    <Outputs>
+        <OutputsNumber>1</OutputsNumber>
+        <Item Index="1">
+            <Name>y</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+    </Outputs>
+</NeuralNetwork>

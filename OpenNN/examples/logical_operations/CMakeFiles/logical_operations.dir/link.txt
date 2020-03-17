@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/logical_operations.dir/main.cpp.o  -o logical_operations -rdynamic ../../opennn/libopennn.a ../../tinyxml2/libtinyxml2.a 

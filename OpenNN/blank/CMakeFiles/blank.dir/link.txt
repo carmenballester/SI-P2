@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/blank.dir/main.cpp.o  -o blank -rdynamic ../opennn/libopennn.a ../tinyxml2/libtinyxml2.a 

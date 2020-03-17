@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/yacht_hydrodynamics_production.dir/main.cpp.o  -o yacht_hydrodynamics_production -rdynamic ../../opennn/libopennn.a ../../tinyxml2/libtinyxml2.a 

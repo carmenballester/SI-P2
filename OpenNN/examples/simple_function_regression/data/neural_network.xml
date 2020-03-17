@@ -1,0 +1,43 @@
+<NeuralNetwork>
+    <Inputs>
+        <InputsNumber>1</InputsNumber>
+        <Item Index="1">
+            <Name>x</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+    </Inputs>
+    <ScalingLayer>
+        <ScalingNeuronsNumber>1</ScalingNeuronsNumber>
+        <Statistics Index="1">
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Mean>0.5</Mean>
+            <StandardDeviation>0.331662</StandardDeviation>
+        </Statistics>
+        <ScalingMethod>MinimumMaximum</ScalingMethod>
+    </ScalingLayer>
+    <MultilayerPerceptron>
+        <Architecture>1 15 1</Architecture>
+        <LayersActivationFunction>HyperbolicTangent Linear</LayersActivationFunction>
+        <Parameters>0.735163 0.846122 -2.19078 -2.2088 0.381869 -1.51677 -0.699021 0.111986 -1.40286 -0.00764241 -1.92713 1.85145 0.325087 1.90109 1.91292 -1.16198 -0.944825 0.723873 -0.739345 0.123423 -1.33029 -0.0816963 -1.12471 1.34821 -0.267696 0.764463 -0.523187 -1.78826 -0.855724 -0.877704 0.701947 2.33858 -1.21926 0.850809 2.08401 -2.21928 1.74997 -0.892414 -1.14253 -0.58663 0.507534 1.74123 -0.330084 -0.0045124 1.25113 -0.40933</Parameters>
+    </MultilayerPerceptron>
+    <UnscalingLayer>
+        <UnscalingNeuronsNumber>1</UnscalingNeuronsNumber>
+        <Statistics Index="1">
+            <Minimum>0.129</Minimum>
+            <Maximum>0.908</Maximum>
+            <Mean>0.496091</Mean>
+            <StandardDeviation>0.261482</StandardDeviation>
+        </Statistics>
+        <UnscalingMethod>MinimumMaximum</UnscalingMethod>
+    </UnscalingLayer>
+    <Outputs>
+        <OutputsNumber>1</OutputsNumber>
+        <Item Index="1">
+            <Name>y</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+    </Outputs>
+</NeuralNetwork>

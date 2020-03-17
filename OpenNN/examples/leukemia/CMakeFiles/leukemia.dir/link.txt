@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/leukemia.dir/main.cpp.o  -o leukemia -rdynamic ../../opennn/libopennn.a ../../tinyxml2/libtinyxml2.a 
