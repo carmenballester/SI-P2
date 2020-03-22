@@ -3,12 +3,17 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QDebug>
+#include <QFileDialog>
+#include <QString>
+#include <QLabel>
+#include <QDir>
+#include <QTextStream>
 
 #include <iostream>
-#include <opencv2/opencv.hpp>
 
 using namespace std;
-using namespace cv;
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

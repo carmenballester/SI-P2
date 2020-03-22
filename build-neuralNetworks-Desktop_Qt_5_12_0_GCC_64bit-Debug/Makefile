@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../neuralNetworks -I. -I../../Practica2/OpenNN -I/opt/Qt5.12.0/5.12.0/gcc_64/include -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtGui -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/opt/Qt5.12.0/5.12.0/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../neuralNetworks -I. -I../OpenNN -I/opt/Qt5.12.0/5.12.0/gcc_64/include -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtGui -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/opt/Qt5.12.0/5.12.0/gcc_64/mkspecs/linux-g++
 QMAKE         = /opt/Qt5.12.0/5.12.0/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = neuralNetworks1.0.0
-DISTDIR = /home/carmenballester/Escritorio/p2-t5/build-neuralNetworks-Desktop_Qt_5_12_0_GCC_64bit-Debug/.tmp/neuralNetworks1.0.0
+DISTDIR = /home/carmenballester/Escritorio/Practica2/build-neuralNetworks-Desktop_Qt_5_12_0_GCC_64bit-Debug/.tmp/neuralNetworks1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/opt/Qt5.12.0/5.12.0/gcc_64/lib
 LIBS          = $(SUBLIBS) -L/home/carmenballester/Escritorio/Practica2/OpenNN/opennn -L/home/carmenballester/Escritorio/Practica2/OpenNN/tinyxml2 -lopennn -ltinyxml2 -L/opt/Qt5.12.0/5.12.0/gcc_64/lib -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread   
@@ -817,7 +817,7 @@ moc_mainwindow.cpp: /opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
 		../neuralNetworks/mainwindow.h \
 		moc_predefs.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/bin/moc
-	/opt/Qt5.12.0/5.12.0/gcc_64/bin/moc $(DEFINES) --include /home/carmenballester/Escritorio/p2-t5/build-neuralNetworks-Desktop_Qt_5_12_0_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.0/5.12.0/gcc_64/mkspecs/linux-g++ -I/home/carmenballester/Escritorio/p2-t5/neuralNetworks -I/home/carmenballester/Escritorio/Practica2/OpenNN -I/opt/Qt5.12.0/5.12.0/gcc_64/include -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtGui -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../neuralNetworks/mainwindow.h -o moc_mainwindow.cpp
+	/opt/Qt5.12.0/5.12.0/gcc_64/bin/moc $(DEFINES) --include /home/carmenballester/Escritorio/Practica2/build-neuralNetworks-Desktop_Qt_5_12_0_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.0/5.12.0/gcc_64/mkspecs/linux-g++ -I/home/carmenballester/Escritorio/Practica2/neuralNetworks -I/home/carmenballester/Escritorio/Practica2/OpenNN -I/opt/Qt5.12.0/5.12.0/gcc_64/include -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtGui -I/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../neuralNetworks/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1092,7 +1092,12 @@ mainwindow.o: ../neuralNetworks/mainwindow.cpp ../neuralNetworks/mainwindow.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qdir.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qfileinfo.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qdialog.h \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QString
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QString \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QLabel \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qlabel.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDir \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QTextStream
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../neuralNetworks/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

@@ -1,11 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDebug>
-#include <QFileDialog>
-#include <QString>
-#include <QLabel>
-#include <QDir>
-#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,7 +19,7 @@ void MainWindow::generateDataset()
 {    
     //Cargar la carpeta donde estan las imagenes
     QString datasetDir = QString(QFileDialog::getExistingDirectory(this, "Select dataset folder"));
-    QString csvDir = datasetDir + "/dataset.csv";
+    QString csvDir = datasetDir + "/datasetGray.csv";
 
     //Abrir el fichero csv donde vamos a guardar los datos y crear el objeto para poder escribir en él
     QFile dataset(csvDir);
@@ -44,14 +38,12 @@ void MainWindow::generateDataset()
     for(size_t k=0; k<strV.size(); k++) {
         QString str = strV[k];
         QDir folder = datasetDir + str;
-        qDebug() << folder;
 
         // Listar los nombres de todas las imagenes (.jpg) dentro de la carpeta
         QStringList filters;
         filters << "*.jpg";
         folder.setNameFilters(filters);
         QStringList filenames = folder.entryList();
-        qDebug() << filenames;
 
         // Leer cada una de las imágenes del dataset y guardarla en el archivo .csv
         for(int i=0; i<filenames.size(); i++) {
@@ -66,7 +58,20 @@ void MainWindow::generateDataset()
             //Guardar el valor de cada pixel de la imagen
             for(int i=0; i<scaledImage.width(); i++) {
                 for(int j=0; j<scaledImage.height(); j++) {
+                    //Escala de grises
                     info += info.number(qGray(image.pixel(i,j))) + " ";
+
+                    //QColor color = image.pixelColor(i,j);
+                    //Canal R
+                    //info += info.number(color.red()) + " ";
+
+                    //Canal G
+                    //info += info.number(color.green()) + " ";
+
+                    //Canal B
+                    //info += info.number(color.blue()) + " ";
+
+                    //Se pueden añadir los canales que quiera mirando los métodos de la clase QColor
                 }
             }
 
