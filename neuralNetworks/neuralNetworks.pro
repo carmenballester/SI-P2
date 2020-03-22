@@ -33,4 +33,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 INCLUDEPATH += /home/carmenballester/Escritorio/Practica2/OpenNN
 LIBS += -L/home/carmenballester/Escritorio/Practica2/OpenNN/opennn -L/home/carmenballester/Escritorio/Practica2/OpenNN/tinyxml2 -lopennn -ltinyxml2
 
-INCLUDEPATH += 'pkg-config opencv --cflags --libs'
+#INCLUDEPATH += /usr/include/opencv2
+#LIBS += -L/usr/lib/x86_64-linux-gnu -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_features2d -lopencv_calib3d
