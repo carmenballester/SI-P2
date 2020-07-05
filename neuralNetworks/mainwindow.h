@@ -12,6 +12,12 @@
 
 #include <iostream>
 
+#include "/home/carmenballester/Escritorio/Practica2/OpenNN/opennn/opennn.h"
+#include "/home/carmenballester/Escritorio/Practica2/OpenNN/opennn/data_set.h"
+#include "/home/carmenballester/Escritorio/Practica2/OpenNN/opennn/neural_network.h"
+#include "/home/carmenballester/Escritorio/Practica2/OpenNN/opennn/training_strategy.h"
+
+using namespace OpenNN;
 using namespace std;
 
 

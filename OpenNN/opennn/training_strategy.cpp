@@ -41,7 +41,6 @@ TrainingStrategy::TrainingStrategy(void)
     set_default();
 }
 
-
 // PERFORMANCE FUNCTIONAL CONSTRUCTOR
 
 /// Loss index constructor. 

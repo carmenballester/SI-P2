@@ -814,6 +814,18 @@ moc_mainwindow.cpp: /opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QMainWindow \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QPushButton \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDebug \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QFileDialog \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qfiledialog.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qdir.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qfileinfo.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qdialog.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QString \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QLabel \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qlabel.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDir \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QTextStream \
 		../neuralNetworks/mainwindow.h \
 		moc_predefs.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/bin/moc
@@ -950,6 +962,18 @@ main.o: ../neuralNetworks/main.cpp ../neuralNetworks/mainwindow.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QPushButton \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDebug \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QFileDialog \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qfiledialog.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qdir.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qfileinfo.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qdialog.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QString \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QLabel \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qlabel.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDir \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QTextStream \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QApplication \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qapplication.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1069,6 +1093,18 @@ mainwindow.o: ../neuralNetworks/mainwindow.cpp ../neuralNetworks/mainwindow.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QPushButton \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDebug \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QFileDialog \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qfiledialog.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qdir.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qfileinfo.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qdialog.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QString \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QLabel \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qlabel.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDir \
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QTextStream \
 		ui_mainwindow.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QVariant \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QApplication \
@@ -1085,19 +1121,7 @@ mainwindow.o: ../neuralNetworks/mainwindow.cpp ../neuralNetworks/mainwindow.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qactiongroup.h \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QStatusBar \
 		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qstatusbar.h \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QWidget \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDebug \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QFileDialog \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qfiledialog.h \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qdir.h \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/qfileinfo.h \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qdialog.h \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QString \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QLabel \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qlabel.h \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/qframe.h \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QDir \
-		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtCore/QTextStream
+		/opt/Qt5.12.0/5.12.0/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../neuralNetworks/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
