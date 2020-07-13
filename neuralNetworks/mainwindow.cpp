@@ -17,10 +17,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::generateDataset()
 {    
-    //Cargar la carpeta donde estan las imagenes
+    // Cargar la carpeta donde estan las imagenes
     QString datasetDir = QString(QFileDialog::getExistingDirectory(this, "Select dataset folder"));
 
-    //Abrir el fichero csv donde vamos a guardar los datos y crear el objeto para poder escribir en él
+    // Abrir el fichero csv donde vamos a guardar los datos y crear el objeto para poder escribir en él
     QString csvDir = datasetDir + "/datasetGray.csv";
     QFile dataset(csvDir);
     QTextStream imageData(&dataset);
@@ -28,13 +28,13 @@ void MainWindow::generateDataset()
         exit(-1);
     }
 
-    //Crear un vector con los nombres de las tres carpetas que tenemos
+    // Crear un vector con los nombres de las tres carpetas que tenemos
     vector<QString> strV(3);
     strV[0] = "/hombre/";
     strV[1] = "/mujer/";
     strV[2] = "/sin-persona/";
 
-    //Para cada carpeta del dataset
+    // Para cada carpeta del dataset
     for(size_t k=0; k<strV.size(); k++) {
         QString str = strV[k];
         QDir folder = datasetDir + str;
@@ -51,27 +51,25 @@ void MainWindow::generateDataset()
             QString info;
             QString path = datasetDir + str + filenames[i];
 
-            //Cargar la imagen y escalarla a 50x50
+            // Cargar la imagen y escalarla a 50x50
             image.load(path);
-            QImage scaledImage = image.scaled(50,50);
+            QImage scaledImage = image.scaled(RESIZE_NN,RESIZE_NN);
 
-            //Guardar el valor de cada pixel de la imagen
+            // Guardar el valor de cada pixel de la imagen
             for(int i=0; i<scaledImage.width(); i++) {
                 for(int j=0; j<scaledImage.height(); j++) {
-                    //Escala de grises
+                    // Escala de grises
                     info += info.number(qGray(image.pixel(i,j))) + " ";
 
-                    //QColor color = image.pixelColor(i,j);
-                    //Canal R
-                    //info += info.number(color.red()) + " ";
+                    // QColor color = image.pixelColor(i,j);
+                    // // Canal R
+                    // info += info.number(color.red()) + " ";
 
-                    //Canal G
-                    //info += info.number(color.green()) + " ";
+                    // // Canal G
+                    // info += info.number(color.green()) + " ";
 
-                    //Canal B
-                    //info += info.number(color.blue()) + " ";
-
-                    //Se pueden añadir los canales que quiera mirando los métodos de la clase QColor
+                    // // Canal B
+                    // info += info.number(color.blue()) + " ";
                 }
             }
 
@@ -152,24 +150,24 @@ void MainWindow::trainNetwork()
     // RED NEURONAL___________________________________________________________________________________________________________________________________________________
 
 
-    // DEFINIR el número de neuronas de cada capa (y el inputStatistics que a saber qué es)
+    // DEFINIR el número de neuronas de cada capa
     size_t numInputs = dataSet.get_variables().count_inputs_number();
     size_t numOutputs = dataSet.get_variables().count_targets_number();
 //    size_t numOcultas = 5;
-
-    const Vector<Statistics<double>> inputsStatistics = dataSet.scale_inputs_minimum_maximum();
 
 
     // CREAR la red neuronal
 
     Vector<size_t> arch;
     arch.push_back(numInputs);
-//    arch.push_back(3);
-    arch.push_back(5);
+//    arch.push_back(7);
+    arch.push_back(2);
+    arch.push_back(2);
     arch.push_back(numOutputs);
 
     NeuralNetwork neuralNetwork(arch);
-//    std::cout << neuralNetwork.get_layers_number() << endl;
+    qDebug() << neuralNetwork.get_layers_number();
+    qDebug() << neuralNetwork.arrange_architecture();
 
     // Asignar la información del dataset a las entradas y las salidas
     Inputs* inputsPointer = neuralNetwork.get_inputs_pointer();
@@ -179,10 +177,16 @@ void MainWindow::trainNetwork()
 
 
     // DEFINIR la capa de escalado
+
+    const Vector<Statistics<double>> inputsStatistics = dataSet.scale_inputs_minimum_maximum();
+
     neuralNetwork.construct_scaling_layer();
     ScalingLayer* scalingLayerPtr = neuralNetwork.get_scaling_layer_pointer();
     scalingLayerPtr->set_statistics(inputsStatistics);
+
     scalingLayerPtr->set_scaling_method(ScalingLayer::NoScaling);
+//    scalingLayerPtr->set_scaling_method(ScalingLayer::ScalingMethod::MeanStandardDeviation);
+//    scalingLayerPtr->set_scaling_method(ScalingLayer::ScalingMethod::MinimumMaximum);
 
 
     // DEFINIR la capa probabilística
@@ -193,32 +197,34 @@ void MainWindow::trainNetwork()
 
     // ENTRENAMIENTO__________________________________________________________________________________________________________________________________________________
 
-//    training_strategy.set_optimization_method(TrainingStrategy::OptimizationMethod::QUASI_NEWTON_METHOD);
-//    ts.set_loss_method(TrainingStrategy::LossMethod::NORMALIZED_SQUARED_ERROR);
-
-//    training_strategy.set_optimization_method(TrainingStrategy::OptimizationMethod::QUASI_NEWTON_METHOD);
-//    ts.set_loss_method(TrainingStrategy::LossMethod::NORMALIZED_SQUARED_ERROR);
 
     // DEFINIR la estrategia de entrenamiento
     LossIndex lossIndex;
     TrainingStrategy trainingStr;
 
+    // Definir la semilla de generación de números aleatorios
+    srand(unsigned(28071999));
+    void initialize_random(void);
+
     // Loss index
     lossIndex.set_data_set_pointer(&dataSet);
     lossIndex.set_neural_network_pointer(&neuralNetwork);
 
+    lossIndex.set_error_type(OpenNN::LossIndex::MEAN_SQUARED_ERROR);
+    lossIndex.set_regularization_type(OpenNN::LossIndex::NEURAL_PARAMETERS_NORM);
+
     // Training strategy
     trainingStr.set(&lossIndex);
-    trainingStr.set_main_type(TrainingStrategy::GRADIENT_DESCENT);
 
+//    trainingStr.set_main_type(TrainingStrategy::GRADIENT_DESCENT);
 //    QuasiNewtonMethod* quasiNewtonMethodPtr = trainingStr.get_quasi_Newton_method_pointer();
 //    quasiNewtonMethodPtr->set_minimum_loss_increase(1.0e-6);
 //    trainingStr.set_display(false);
 
-      GradientDescent* gradientDesPtr = trainingStr.get_gradient_descent_pointer();
-      gradientDesPtr->set_minimum_loss_increase(1.0e-6);
-      trainingStr.set_display(false);
-
+    trainingStr.set_main_type(TrainingStrategy::GRADIENT_DESCENT);
+    GradientDescent* gradientDesPtr = trainingStr.get_gradient_descent_pointer();
+    gradientDesPtr->set_minimum_loss_increase(1.0e-6);
+    trainingStr.set_display(false);
 
 
     // ENTRENAR la red
@@ -260,6 +266,9 @@ void MainWindow::trainNetwork()
     // Error
     Vector<double> testingError = testingAnalysis.calculate_testing_errors();
 
+    // Tiempo de ejecución
+    double time = (double(t1-t0)/CLOCKS_PER_SEC)/60;
+
     // Precisión
     accuracy = (float(conf[0]+conf[4]+conf[8]))/(conf[0]+conf[1]+conf[2]+conf[3]+conf[4]+conf[5]+conf[6]+conf[7]+conf[8]);
 
@@ -273,13 +282,11 @@ void MainWindow::trainNetwork()
     sens_m = (float(conf[4]))/(conf[1]+conf[4]+conf[7]);
     sens_sp = (float(conf[8]))/(conf[2]+conf[5]+conf[8]);
 
-    // Tiempo de ejecución
-    double time = (double(t1-t0)/CLOCKS_PER_SEC)/60;
-
 
     // MOSTRAR por pantalla los resultados
 
     qDebug() << "Parámetros obtenidos" << endl;
+    qDebug() << qSetRealNumberPrecision(4) << "Tiempo de ejecución(min):\t" << time << endl;
     qDebug() << "Matriz de confusión:\t\t" << conf[0] << "\t" << conf[3] << "\t" << conf[6];
     qDebug() << "                    \t\t" << conf[1] << "\t" << conf[4] << "\t" << conf[7];
     qDebug() << "                    \t\t" << conf[2] << "\t" << conf[5] << "\t" << conf[8] << endl;
@@ -290,19 +297,18 @@ void MainWindow::trainNetwork()
     qDebug() << qSetRealNumberPrecision(4) << "Mean squared error:\t\t" << testingError[1];
     qDebug() << qSetRealNumberPrecision(4) << "Root mean squared error:\t" << testingError[2];
     qDebug() << qSetRealNumberPrecision(4) << "Normalized squared error:\t" << testingError[3] << endl;
-    qDebug() << qSetRealNumberPrecision(4) << "Tiempo de ejecución(min):\t" << time << endl;
 
 
     // GUARDAR los resultados
 
     // Definir las rutas de los archivos donde guardamos los parámetros
-    QString dataSetDir = "/home/carmenballester/Escritorio/Practica2/Resultados/data_set_1.xml";
+    QString dataSetDir = "/home/carmenballester/Escritorio/Practica2/resultados/dataset/data_set_1.xml";
     QFile dataSetFile(dataSetDir);
-    QString neuralNetworkDir = "/home/carmenballester/Escritorio/Practica2/Resultados/neural_network_1.xml";
+    QString neuralNetworkDir = "/home/carmenballester/Escritorio/Practica2/resultados/neuralnetwork/neural_network_1.xml";
     QFile neuralNetworkFile(neuralNetworkDir);
-    QString trainingStrDir = "/home/carmenballester/Escritorio/Practica2/Resultados/training_strategy_1.xml";
+    QString trainingStrDir = "/home/carmenballester/Escritorio/Practica2/resultados/trainingstrategy/training_strategy_1.xml";
     QFile trainingStrFile(trainingStrDir);
-    QString confusionDir = "/home/carmenballester/Escritorio/Practica2/Resultados/confusion_1.dat";
+    QString confusionDir = "/home/carmenballester/Escritorio/Practica2/resultados/confusion/confusion_1.dat";
     QFile confusionFile(neuralNetworkDir);
 
     // Guardar los resultados obtenidos
@@ -318,13 +324,98 @@ void MainWindow::trainNetwork()
     qDebug() << "Resultados guardados";
 }
 
-void MainWindow::testNetwork()
-{
-    qDebug() << "Test Network";
+void MainWindow::testNetwork() {
+
+    // Cargar el fichero .XML que contiene la red neuronal entrenada
+    QString neuralNetworkDir = QString(QFileDialog::getOpenFileName(this, "Select neural network file (.xml)"));
+
+    // Crear el objeto de la red neuronal a partir del fichero cargado y establecer sus parámetros
+    NeuralNetwork neuralNetwork(neuralNetworkDir.toStdString());
+
+    // Cargar la imagen y escalarla a 250x250
+    QString imageDir = QString(QFileDialog::getOpenFileName(this, "Select image file"));
+
+    QImage image;
+    image.load(imageDir);
+    QImage scaledImage = image.scaled(RESIZE_IMAGE,RESIZE_IMAGE);
+
+    // Dividir la imagen en sectores (5x5) para pasar cada sector por la red
+    for(int i=0; i<3; i++) {
+        for(int j=0; j<3; j++) {
+            QImage sector;
+            sector = scaledImage.copy(i*SECTOR,j*SECTOR,SECTOR,SECTOR);
+            QImage scaledSector = sector.scaled(RESIZE_NN,RESIZE_NN);
+
+            Vector<double> inputs(neuralNetwork.get_inputs_number());
+            Vector<double> outputs(neuralNetwork.get_outputs_number());
+
+            // Guardar el valor de cada pixel de la imagen
+            size_t pix = 0;
+            for(int x=0; x<RESIZE_NN; x++) {
+                for(int y=0; y<RESIZE_NN; y++) {
+                    // Escala de grises
+                    inputs[pix] = qGray(sector.pixel(x,y));
+                    pix++;
+
+                    // QColor color = image.pixelColor(i,j);
+                    // // Canal R
+                    // inputs[pix] = color.red();
+                    // pix++;
+
+                    // // Canal G
+                    // inputs[pix] = color.green();
+                    // pix++;
+
+                    // //Canal B
+                    // inputs[pix] = color.blue();
+                    // pix++;
+                }
+            }
+
+            // Calcular las predicciones de la red
+            outputs = neuralNetwork.calculate_outputs(inputs);
+            size_t clase = outputs.calculate_maximal_index();
+
+            QPainter p;
+            switch(clase){
+                case 0:
+                    p.begin(&scaledImage);
+                    p.setPen(QPen(Qt::red));
+                    p.setFont(QFont("Times", 8, QFont::Bold));
+                    p.drawText(i*SECTOR+SECTOR/3,j*SECTOR+SECTOR/2,"Hombre");
+                    p.drawRect(i*SECTOR-1,j*SECTOR-1,SECTOR-1,SECTOR-1);
+                    p.end();
+                break;
+
+                case 1:
+                    p.begin(&scaledImage);
+                    p.setPen(QPen(Qt::blue));
+                    p.setFont(QFont("Times", 8, QFont::Bold));
+                    p.drawText(i*SECTOR+SECTOR/3,j*SECTOR+SECTOR/2,"Mujer");
+                    p.drawRect(i*SECTOR-1,j*SECTOR-1,SECTOR-1,SECTOR-1);
+                    p.end();
+                break;
+
+                case 2:
+                    p.begin(&scaledImage);
+                    p.setPen(QPen(Qt::green));
+                    p.setFont(QFont("Times", 8, QFont::Bold));
+                    p.drawText(i*SECTOR+SECTOR/5,j*SECTOR+SECTOR/2,"Sin persona");
+                    p.drawRect(i*SECTOR-1,j*SECTOR-1,SECTOR-1,SECTOR-1);
+                    p.end();
+                break;
+            }
+        }
+    }
+
+    QPixmap imagePM;
+    imagePM.convertFromImage(scaledImage);
+    ui->image->setPixmap(imagePM);
+
+    scaledImage.save("/home/carmenballester/Escritorio/Practica2/resultados/imagetest/1/test_1.jpg");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-

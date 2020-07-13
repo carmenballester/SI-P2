@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -26,6 +27,7 @@ public:
     QPushButton *createDataset;
     QPushButton *trainNet;
     QPushButton *testNet;
+    QLabel *image;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -38,13 +40,16 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         createDataset = new QPushButton(centralwidget);
         createDataset->setObjectName(QString::fromUtf8("createDataset"));
-        createDataset->setGeometry(QRect(280, 60, 141, 25));
+        createDataset->setGeometry(QRect(70, 70, 151, 71));
         trainNet = new QPushButton(centralwidget);
         trainNet->setObjectName(QString::fromUtf8("trainNet"));
-        trainNet->setGeometry(QRect(280, 140, 141, 25));
+        trainNet->setGeometry(QRect(330, 70, 151, 71));
         testNet = new QPushButton(centralwidget);
         testNet->setObjectName(QString::fromUtf8("testNet"));
-        testNet->setGeometry(QRect(280, 230, 141, 25));
+        testNet->setGeometry(QRect(580, 70, 151, 71));
+        image = new QLabel(centralwidget);
+        image->setObjectName(QString::fromUtf8("image"));
+        image->setGeometry(QRect(70, 190, 661, 321));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -65,6 +70,7 @@ public:
         createDataset->setText(QApplication::translate("MainWindow", "Crear Dataset", nullptr));
         trainNet->setText(QApplication::translate("MainWindow", "Entrenar Red", nullptr));
         testNet->setText(QApplication::translate("MainWindow", "Evaluar Red", nullptr));
+        image->setText(QString());
     } // retranslateUi
 
 };

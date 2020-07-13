@@ -9,6 +9,9 @@
 #include <QLabel>
 #include <QDir>
 #include <QTextStream>
+#include <QPainter>
+#include <QTimer>
+#include <QThread>
 
 #include <iostream>
 
@@ -20,6 +23,9 @@
 using namespace OpenNN;
 using namespace std;
 
+#define RESIZE_IMAGE 255
+#define RESIZE_NN 50
+#define SECTOR 85
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
