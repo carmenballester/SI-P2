@@ -161,13 +161,13 @@ void MainWindow::trainNetwork()
     Vector<size_t> arch;
     arch.push_back(numInputs);
 //    arch.push_back(7);
-    arch.push_back(2);
+//    arch.push_back(3);
     arch.push_back(2);
     arch.push_back(numOutputs);
 
     NeuralNetwork neuralNetwork(arch);
-    qDebug() << neuralNetwork.get_layers_number();
-    qDebug() << neuralNetwork.arrange_architecture();
+//    qDebug() << neuralNetwork.get_layers_number();
+//    qDebug() << neuralNetwork.arrange_architecture();
 
     // Asignar la información del dataset a las entradas y las salidas
     Inputs* inputsPointer = neuralNetwork.get_inputs_pointer();
@@ -216,15 +216,15 @@ void MainWindow::trainNetwork()
     // Training strategy
     trainingStr.set(&lossIndex);
 
-//    trainingStr.set_main_type(TrainingStrategy::GRADIENT_DESCENT);
-//    QuasiNewtonMethod* quasiNewtonMethodPtr = trainingStr.get_quasi_Newton_method_pointer();
-//    quasiNewtonMethodPtr->set_minimum_loss_increase(1.0e-6);
-//    trainingStr.set_display(false);
-
-    trainingStr.set_main_type(TrainingStrategy::GRADIENT_DESCENT);
-    GradientDescent* gradientDesPtr = trainingStr.get_gradient_descent_pointer();
-    gradientDesPtr->set_minimum_loss_increase(1.0e-6);
+    trainingStr.set_main_type(TrainingStrategy::QUASI_NEWTON_METHOD);
+    QuasiNewtonMethod* quasiNewtonMethodPtr = trainingStr.get_quasi_Newton_method_pointer();
+    quasiNewtonMethodPtr->set_minimum_loss_increase(1.0e-6);
     trainingStr.set_display(false);
+
+//    trainingStr.set_main_type(TrainingStrategy::GRADIENT_DESCENT);
+//    GradientDescent* gradientDesPtr = trainingStr.get_gradient_descent_pointer();
+//    gradientDesPtr->set_minimum_loss_increase(1.0e-6);
+//    trainingStr.set_display(false);
 
 
     // ENTRENAR la red
@@ -376,6 +376,7 @@ void MainWindow::testNetwork() {
             outputs = neuralNetwork.calculate_outputs(inputs);
             size_t clase = outputs.calculate_maximal_index();
 
+            // Dibujar los resultados en la imagen
             QPainter p;
             switch(clase){
                 case 0:
@@ -408,11 +409,12 @@ void MainWindow::testNetwork() {
         }
     }
 
+    // Mostrar la imagen y guardarla
     QPixmap imagePM;
     imagePM.convertFromImage(scaledImage);
     ui->image->setPixmap(imagePM);
 
-    scaledImage.save("/home/carmenballester/Escritorio/Practica2/resultados/imagetest/1/test_1.jpg");
+    scaledImage.save("/home/carmenballester/Escritorio/Practica2/resultados/imagetest/test_19.jpg");
 }
 
 MainWindow::~MainWindow()

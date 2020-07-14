@@ -1,5 +1,6 @@
 <TrainingStrategy>
-    <Main Type="GRADIENT_DESCENT">
+    <Main Type="QUASI_NEWTON_METHOD">
+        <InverseHessianApproximationMethod>BFGS</InverseHessianApproximationMethod>
         <TrainingRateAlgorithm>
             <TrainingRateMethod>BrentMethod</TrainingRateMethod>
             <TrainingRateTolerance>1e-06</TrainingRateTolerance>
